@@ -1,0 +1,96 @@
+<!-- Validation failure messages -->
+<% if @listing.errors.any? %>
+  <% @listing.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Listing #<%= @listing.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_listing/<%= @listing.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for price -->
+      <div class="form-group">
+        <label for="price" class="control-label">
+          Price
+        </label>
+
+        <input type="text" id="price" name="price" placeholder="Price" class="form-control" value="<%= @listing.price %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @listing.description %></textarea>
+      </div>
+
+      <!-- Label and input for address -->
+      <div class="form-group">
+        <label for="address" class="control-label">
+          Address
+        </label>
+
+        <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @listing.address %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @listing.user_id %>">
+      </div>
+
+      <!-- Label and input for availability -->
+      <div class="checkbox">
+        <label for="availability">
+          <input type="checkbox" id="availability" name="availability" value="1" <%= "checked" if @listing.availability %>>
+          Availability
+        </label>
+      </div>
+
+      <!-- Label and input for free_wifi -->
+      <div class="checkbox">
+        <label for="free_wifi">
+          <input type="checkbox" id="free_wifi" name="free_wifi" value="1" <%= "checked" if @listing.free_wifi %>>
+          Free wifi
+        </label>
+      </div>
+
+      <!-- Label and input for heated_floors -->
+      <div class="checkbox">
+        <label for="heated_floors">
+          <input type="checkbox" id="heated_floors" name="heated_floors" value="1" <%= "checked" if @listing.heated_floors %>>
+          Heated floors
+        </label>
+      </div>
+
+      <!-- Label and input for toiletries -->
+      <div class="checkbox">
+        <label for="toiletries">
+          <input type="checkbox" id="toiletries" name="toiletries" value="1" <%= "checked" if @listing.toiletries %>>
+          Toiletries
+        </label>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Listing
+      </button>
+      or
+      <a href="/listings/<%= @listing.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
