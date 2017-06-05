@@ -52,6 +52,11 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the Listing resource:
+  root to: "listings#index"
+
+  get "/my_favorites", :controller => "listings", :action => "my_favorites"
+  get "/my_bookings", :controller => "listings", :action => "my_bookings"
+
   # CREATE
   get "/listings/new", :controller => "listings", :action => "new"
   post "/create_listing", :controller => "listings", :action => "create"
@@ -67,6 +72,5 @@ Rails.application.routes.draw do
   # DELETE
   get "/delete_listing/:id", :controller => "listings", :action => "destroy"
   #------------------------------
-  root to: "listings#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -2,19 +2,19 @@ class FavoritesController < ApplicationController
   def index
     @favorites = Favorite.all
 
-    render("favorites/index.html.erb")
+    # render("favorites/index.html.erb")
   end
 
   def show
     @favorite = Favorite.find(params[:id])
 
-    render("favorites/show.html.erb")
+    # render("favorites/show.html.erb")
   end
 
   def new
     @favorite = Favorite.new
 
-    render("favorites/new.html.erb")
+    # render("favorites/new.html.erb")
   end
 
   def create
@@ -23,19 +23,21 @@ class FavoritesController < ApplicationController
     @favorite.listing_id = params[:listing_id]
     @favorite.user_id = params[:user_id]
 
-    save_status = @favorite.save
+    # save_status = @favorite.save
 
-    if save_status == true
-      redirect_to("/favorites/#{@favorite.id}", :notice => "Favorite created successfully.")
+    if @favorite.save
+      redirect_to :back, :notice => "Favorite created successfully."
+      # redirect_to("/favorites/#{@favorite.id}", :notice => "Favorite created successfully.")
     else
-      render("favorites/new.html.erb")
+      render 'new'
+      # render("favorites/new.html.erb")
     end
   end
 
   def edit
     @favorite = Favorite.find(params[:id])
 
-    render("favorites/edit.html.erb")
+    # render("favorites/edit.html.erb")
   end
 
   def update
@@ -44,12 +46,15 @@ class FavoritesController < ApplicationController
     @favorite.listing_id = params[:listing_id]
     @favorite.user_id = params[:user_id]
 
-    save_status = @favorite.save
+    # save_status = @favorite.save
 
-    if save_status == true
-      redirect_to("/favorites/#{@favorite.id}", :notice => "Favorite updated successfully.")
+    if @favorite.save
+      redirect_to "/favorites", :notice => "Favorite updated successfully."
+      # save_status == true
+      # redirect_to("/favorites/#{@favorite.id}", :notice => "Favorite updated successfully.")
     else
-      render("favorites/edit.html.erb")
+      render 'edit'
+      # render("favorites/edit.html.erb")
     end
   end
 
@@ -58,10 +63,11 @@ class FavoritesController < ApplicationController
 
     @favorite.destroy
 
-    if URI(request.referer).path == "/favorites/#{@favorite.id}"
-      redirect_to("/", :notice => "Favorite deleted.")
-    else
-      redirect_to(:back, :notice => "Favorite deleted.")
-    end
+    redirect_to :back, :notice => "Favorite deleted."
+    # if URI(request.referer).path == "/favorites/#{@favorite.id}"
+    #   redirect_to("/", :notice => "Favorite deleted.")
+    # else
+    #   redirect_to(:back, :notice => "Favorite deleted.")
+    # end
   end
 end

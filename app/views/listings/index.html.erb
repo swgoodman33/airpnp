@@ -1,4 +1,6 @@
-<div class="page-header">
+<%= render @listings %>
+
+<!-- <div class="page-header">
   <h1>
     Listings
     <a href="/listings/new" class="btn btn-lg btn-success">New Listing</a>
@@ -14,9 +16,6 @@
         <th>Address</th>
         <th>User</th>
         <th>Availability</th>
-        <th>Free wifi</th>
-        <th>Heated floors</th>
-        <th>Toiletries</th>
         <th>Actions</th>
       </tr>
 
@@ -27,9 +26,6 @@
         <td><%= listing.address %></td>
         <td><%= listing.user_id %></td>
         <td><%= listing.availability %></td>
-        <td><%= listing.free_wifi %></td>
-        <td><%= listing.heated_floors %></td>
-        <td><%= listing.toiletries %></td>
         <td>
           <a href="/listings/<%= listing.id %>" class="btn btn-primary">Show</a>
           <a href="/listings/<%= listing.id %>/edit" class="btn btn-warning">Edit</a>
@@ -39,4 +35,4 @@
       <% end %>
     </table>
   </div>
-</div>
+</div> -->

@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      </div>
+
+      <div class="panel-body">
+        <a href="/listings/<%= listing.id %>">
+          <% @listing.photos.each do |photo| %>
+          <img src="<%= photo.image_url %>" class="img-responsive">
+          <% end %>
+        </a>
+
+        <p>
+          <% favorite = Favorite.find_by(:listing_id => listing.id, :user_id => current_user.id) %>
+          <% if favorite.present? %>
+            <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-link">
+              <i class="fa fa-heart"></i>
+            </a>
+          <% else %>
+            <form action="/create_favorite" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <input type="hidden" name="listing_id" value="<%= listing.id %>">
+
+              <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+              <button class="btn btn-link">
+                <i class="fa fa-heart-o"></i>
+              </button>
+            </form>
+          <% end %>
+        </p>
+
+        <ul class="media-list">
+
+          <% if listing.price.present? %>
+          <li class="media">
+            <div class="media-body">
+              $<%= listing.price %>
+            </div>
+          </li>
+          <% end %>
+
+          <% if listing.description.present? %>
+          <li class="media">
+            <div class="media-body">
+              <%= listing.description %>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
