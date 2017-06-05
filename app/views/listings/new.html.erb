@@ -23,11 +23,26 @@
       <!-- Label and input for price -->
       <div class="form-group">
         <label for="price" class="control-label">
-          Price ($/15 minutes)
+          Price
         </label>
 
-        <p>$</p><input type="text" id="price" name="price" placeholder="Add the cost for every 15 minutes of use..." class="form-control" value="<%= @listing.price %>">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="text" class="form-control" id="price" placeholder="Price per 15 minutes">
+          <div class="input-group-addon">.00</div>
+        </div>
+        <!-- <input type="text" id="price" name="price" placeholder="Add the cost for every 15 minutes of use..." class="form-control" value="<%= @listing.price %>"> -->
       </div>
+
+      <!-- Label and input for price -->
+      <!-- <div class="form-group">
+        <label class="sr-only" for="price">Price per 15 minutes</label>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="text" class="form-control" id="price" placeholder="Price per 15 minutes">
+          <div class="input-group-addon">.00</div>
+        </div>
+      </div> -->
 
       <!-- Label and input for description -->
       <div class="form-group">

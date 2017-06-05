@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
-  class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -11,5 +9,4 @@ class ApplicationController < ActionController::Base
 
     devise_parameter_sanitizer.permit(:account_update, :keys => [:image_url, :description])
   end
-end
 end

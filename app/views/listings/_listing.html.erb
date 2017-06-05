@@ -6,39 +6,17 @@
 
       <div class="panel-body">
         <a href="/listings/<%= listing.id %>">
-          <% @listing.photos.each do |photo| %>
+          <% listing.photos.each do |photo| %>
           <img src="<%= photo.image_url %>" class="img-responsive">
           <% end %>
         </a>
-
-        <p>
-          <% favorite = Favorite.find_by(:listing_id => listing.id, :user_id => current_user.id) %>
-          <% if favorite.present? %>
-            <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-link">
-              <i class="fa fa-heart"></i>
-            </a>
-          <% else %>
-            <form action="/create_favorite" method="post">
-              <!-- Hidden input for authenticity token to protect from forgery -->
-              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-              <input type="hidden" name="listing_id" value="<%= listing.id %>">
-
-              <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
-              <button class="btn btn-link">
-                <i class="fa fa-heart-o"></i>
-              </button>
-            </form>
-          <% end %>
-        </p>
 
         <ul class="media-list">
 
           <% if listing.price.present? %>
           <li class="media">
             <div class="media-body">
-              $<%= listing.price %>
+              <span class="label label-success">$<%= listing.price %>0</span> per 15 min
             </div>
           </li>
           <% end %>
@@ -51,6 +29,62 @@
           </li>
           <% end %>
         </ul>
+
+        <% if current_user.present? %>
+        <p>
+          <% favorite = Favorite.find_by(:listing_id => listing.id, :user_id => current_user.id) %>
+          <% if favorite.present? %>
+            <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-link">
+              <i class="fa fa-heart"></i> Remove from My Favorites
+            </a>
+          <% else %>
+            <form action="/create_favorite" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <input type="hidden" name="listing_id" value="<%= listing.id %>">
+
+              <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+              <button class="btn btn-link">
+                <i class="fa fa-heart-o"></i> Add to My Favorites
+              </button>
+            </form>
+          <% end %>
+        </p>
+        <% end %>
+
+        <% if current_user.present? %>
+        <p>
+          <% booking = Booking.find_by(:listing_id => listing.id, :user_id => current_user.id) %>
+          <% if booking.present? %>
+            <a href="/delete_booking/<%= booking.id %>" class="btn btn-link">
+              <i class="fa fa-check-circle"></i> Cancel Booking
+            </a>
+          <% else %>
+            <form action="/create_booking" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <input type="hidden" name="listing_id" value="<%= listing.id %>">
+
+              <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+              <button class="btn btn-link">
+                <i class="fa fa-check-circle-o"></i> Book Now
+              </button>
+            </form>
+          <% end %>
+        </p>
+        <% end %>
+
+        <% if current_user.present? %>
+        <% if listing.user_id == current_user.id %>
+        <a href="/update_listing/<%= listing.id %>" class="btn btn-link">
+              <i class="fa fa-pencil"></i> Update Booking
+        </a>
+        <% end %>
+        <% end %>
       </div>
     </div>
   </div>

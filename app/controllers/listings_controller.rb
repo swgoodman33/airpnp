@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.all
+    @listings = Listing.where({ :availability => true})
 
     # render("listings/index.html.erb")
   end
