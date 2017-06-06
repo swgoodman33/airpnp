@@ -12,6 +12,9 @@
     body {
       padding-top: 60px;
     }
+    h6 {
+      margin-top: 17px;
+    }
   </style>
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -34,16 +37,38 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand">Airpnp</a>
+        <a href="/listings" class="navbar-brand">Airpnp</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/listings">Home</a></li>
+          <!-- <li>
+          <button type="button" class="btn btn-default"><a href="/listings">HOME</a></button>
+        </li> -->
           <% if current_user.present? %>
-          <li><a href="/my_favorites">My Favorites</a></li>
-          <li><a href="/my_bookings">Previous Bookings</a></li>
+          <div class="btn-group">
+            <h6>
+              <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Visitors <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="/my_favorites">My Favorites</a></li>
+                <li><a href="/my_bookings">My Bookings</a></li>
+              </ul>
+            </h6>
+          </div>
+          <div class="btn-group">
+            <h6>
+              <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Renters <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="/my_listings">My Bathrooms</a></li>
+                <li><a href="/listings/new">Add New Bathroom</a></li>
+              </ul>
+            </h6>
+          </div>
           <% end %>
         </ul>
 

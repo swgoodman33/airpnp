@@ -1,10 +1,14 @@
 class ListingsController < ApplicationController
   def my_favorites
-    @listings = current_user.favorites
+    @listings = current_user.favorite_listings
   end
 
   def my_bookings
-    @listings = current_user.bookings
+    @listings = current_user.booked_listings
+  end
+
+  def my_listings
+    @listings = Listing.where({ :user_id => current_user.id })
   end
 
   def index
@@ -28,7 +32,7 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new
 
-    @listing.price = params[:price]
+    @listing.price = params[:price].gsub('$', '')
     @listing.description = params[:description]
     @listing.address = params[:address]
     @listing.user_id = params[:user_id]
@@ -64,7 +68,7 @@ class ListingsController < ApplicationController
     # save_status = @listing.save
 
     if @listing.save
-      redirect_to "/listings/#{@listing.id}", :notice => "Listing updated successfully."
+      redirect_to "/my_listings", :notice => "Listing updated successfully."
       # save_status == true
       # redirect_to("/listings/#{@listing.id}", :notice => "Listing updated successfully.")
     else

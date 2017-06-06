@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
   get "/my_favorites", :controller => "listings", :action => "my_favorites"
   get "/my_bookings", :controller => "listings", :action => "my_bookings"
+  get "/my_listings", :controller => "listings", :action => "my_listings"
 
   # CREATE
   get "/listings/new", :controller => "listings", :action => "new"

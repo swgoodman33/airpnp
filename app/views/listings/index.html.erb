@@ -1,13 +1,12 @@
 <% if current_user.present? %>
 <div class="page-header">
   <h4><span class="label label-primary"><%= @listings.count %></span> bathrooms available in your area</h4>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
+  <!-- <div class="btn-group" aria-label="...">
     <a href="/listings/new" class="btn btn-default btn-block">
       <i class="fa fa-plus"></i> Rent out your bathroom
     </a>
+  </div> -->
+</div>
 <% end %>
 
 <%= render @listings %>

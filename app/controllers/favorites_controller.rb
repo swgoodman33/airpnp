@@ -49,7 +49,7 @@ class FavoritesController < ApplicationController
     # save_status = @favorite.save
 
     if @favorite.save
-      redirect_to "/favorites", :notice => "Favorite updated successfully."
+      redirect_to "/my_favorites", :notice => "Favorite updated successfully."
       # save_status == true
       # redirect_to("/favorites/#{@favorite.id}", :notice => "Favorite updated successfully.")
     else

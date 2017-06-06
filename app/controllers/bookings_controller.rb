@@ -35,7 +35,7 @@ class BookingsController < ApplicationController
     @booking.user_id = params[:user_id]
 
     if @booking.save
-      redirect_to "/likes", :notice => "Booking updated successfully."
+      redirect_to "/my_bookings", :notice => "Booking updated successfully."
     else
       render 'edit'
     end
