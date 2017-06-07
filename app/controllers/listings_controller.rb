@@ -13,7 +13,6 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.where({ :availability => true})
-
     # render("listings/index.html.erb")
   end
 
@@ -38,9 +37,35 @@ class ListingsController < ApplicationController
     @listing.user_id = params[:user_id]
     @listing.availability = params[:availability]
 
-    # save_status = @listing.save
-
     if @listing.save
+
+      if params[:photo1].present?
+      @first_photo = Photo.new
+
+      @first_photo.image_url = params[:photo1]
+      @first_photo.listing_id = @listing.id
+
+      @first_photo.save
+      end
+
+      if params[:photo2].present?
+      @second_photo = Photo.new
+
+      @second_photo.image_url = params[:photo2]
+      @second_photo.listing_id = @listing.id
+
+      @second_photo.save
+      end
+
+      if params[:photo3].present?
+      @third_photo = Photo.new
+
+      @third_photo.image_url = params[:photo3]
+      @third_photo.listing_id = @listing.id
+
+      @third_photo.save
+      end
+
       redirect_to "/listings", :notice => "Listing created successfully."
       # save_status == true
       # redirect_to("/listings/#{@listing.id}", :notice => "Listing created successfully.")
@@ -59,7 +84,7 @@ class ListingsController < ApplicationController
   def update
     @listing = Listing.find(params[:id])
 
-    @listing.price = params[:price]
+    @listing.price = params[:price].to_i
     @listing.description = params[:description]
     @listing.address = params[:address]
     @listing.user_id = params[:user_id]
@@ -68,6 +93,37 @@ class ListingsController < ApplicationController
     # save_status = @listing.save
 
     if @listing.save
+
+      if @first_photo.present?
+
+      @first_photo = Photo.where(:listing_id => @listing.id)
+
+      @first_photo.image_url = params[:photo1]
+      @first_photo.listing_id = @listing.id
+
+      @first_photo.save
+      end
+
+      if @second_photo.present?
+
+      @second_photo = Photo.where(:listing_id => @listing.id)
+
+      @second_photo.image_url = params[:photo2]
+      @second_photo.listing_id = @listing.id
+
+      @second_photo.save
+      end
+
+      if @third_photo.present?
+
+      @third_photo = Photo.where(:listing_id => @listing.id)
+
+      @third_photo.image_url = params[:photo3]
+      @third_photo.listing_id = @listing.id
+
+      @third_photo.save
+      end
+
       redirect_to "/my_listings", :notice => "Listing updated successfully."
       # save_status == true
       # redirect_to("/listings/#{@listing.id}", :notice => "Listing updated successfully.")

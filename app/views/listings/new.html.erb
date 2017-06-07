@@ -28,7 +28,7 @@
 
         <div class="input-group">
           <div class="input-group-addon">$</div>
-          <input type="text" id="price" name="price" placeholder="Add the cost for every 15 minutes of use..." class="form-control" value="<%= @listing.price %>">
+          <input type="text" id="price" name="price" placeholder="Add the cost for every 15 minutes of use..." class="form-control">
           <div class="input-group-addon">.00</div>
         </div>
       </div>
@@ -50,7 +50,7 @@
           Description
         </label>
 
-        <textarea id="description" name="description" placeholder="Let visitors know what they can expect with your bathroom..." class="form-control" rows="3"><%= @listing.description %></textarea>
+        <textarea id="description" name="description" placeholder="Let visitors know what they can expect with your bathroom..." class="form-control" rows="3"></textarea>
       </div>
 
       <!-- Label and input for address -->
@@ -59,7 +59,32 @@
           Address
         </label>
 
-        <input type="text" id="address" name="address" placeholder="Include the street address, apartment number, city, state, and zipcode..." class="form-control" value="<%= @listing.address %>">
+        <input type="text" id="address" name="address" placeholder="Include the street address, apartment number, city, state, and zipcode..." class="form-control">
+      </div>
+
+      <!-- Label and input for photos -->
+      <div class="form-group">
+        <label for="photo" class="control-label">
+          Photo #1
+        </label>
+
+        <input type="text" id="photo" name="photo1" placeholder="Add an image url for your first photo..." class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="photo" class="control-label">
+          Photo #2
+        </label>
+
+        <input type="text" id="photo" name="photo2" placeholder="Add an image url for your second photo..." class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="photo" class="control-label">
+          Photo #3
+        </label>
+
+        <input type="text" id="photo" name="photo3" placeholder="Add an image url for your third photo..." class="form-control">
       </div>
 
       <!-- Label and input for user_id -->
@@ -68,7 +93,7 @@
       <!-- Label and input for availability -->
       <div class="checkbox">
         <label for="availability">
-          <input type="checkbox" id="availability" name="availability" value="1" <%= "checked" if @listing.availability %>>
+          <input type="checkbox" id="availability" name="availability">
           Check this box if your bathroom is available for use right now
         </label>
       </div>
@@ -82,7 +107,7 @@
         </label>
       </div>
 
-      <!-- Label and input for heated_floors -->
+      <!- Label and input for heated_floors -->
       <!-- <div class="checkbox">
         <label for="heated_floors">
           <input type="checkbox" id="heated_floors" name="heated_floors" value="1" <%= "checked" if @listing.heated_floors %>>

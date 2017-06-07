@@ -28,7 +28,7 @@
 
         <div class="input-group">
           <div class="input-group-addon">$</div>
-          <input type="text" id="price" name="price" placeholder="Add the cost for every 15 minutes of use..." class="form-control" value="<%= @listing.price %>">
+          <input type="text" id="price" name="price" placeholder="Add the cost for every 15 minutes of use..." class="form-control" value="<%= @listing.price.to_i %>">
           <div class="input-group-addon">.00</div>
         </div>
       </div>
@@ -50,6 +50,17 @@
           </label>
 
           <input type="text" id="address" name="address" placeholder="Include the street address, apartment number, city, state, and zipcode..." class="form-control" value="<%= @listing.address %>">
+        </div>
+
+        <!-- Label and input for photos -->
+        <div class="form-group">
+          <% @listing.photos.each_with_index do |photo,index| %>
+          <label for="photo" class="control-label">
+            Photo
+          </label>
+
+          <input type="text" id="photo" name="photo<%= 1-index %>" placeholder="Add an image url for your photo..." class="form-control" value="<%= photo.image_url %>">
+        <% end %>
         </div>
 
         <!-- Label and input for user_id -->
