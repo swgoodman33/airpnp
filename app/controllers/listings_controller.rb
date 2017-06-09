@@ -94,9 +94,10 @@ class ListingsController < ApplicationController
 
     if @listing.save
 
-      if @first_photo.present?
+      @listing.photos.destroy_all
 
-      @first_photo = Photo.where(:listing_id => @listing.id)
+      if params[:photo1].present?
+      @first_photo = Photo.new
 
       @first_photo.image_url = params[:photo1]
       @first_photo.listing_id = @listing.id
@@ -104,9 +105,8 @@ class ListingsController < ApplicationController
       @first_photo.save
       end
 
-      if @second_photo.present?
-
-      @second_photo = Photo.where(:listing_id => @listing.id)
+      if params[:photo2].present?
+      @second_photo = Photo.new
 
       @second_photo.image_url = params[:photo2]
       @second_photo.listing_id = @listing.id
@@ -114,9 +114,8 @@ class ListingsController < ApplicationController
       @second_photo.save
       end
 
-      if @third_photo.present?
-
-      @third_photo = Photo.where(:listing_id => @listing.id)
+      if params[:photo3].present?
+      @third_photo = Photo.new
 
       @third_photo.image_url = params[:photo3]
       @third_photo.listing_id = @listing.id

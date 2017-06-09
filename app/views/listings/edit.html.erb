@@ -59,7 +59,14 @@
             Photo
           </label>
 
-          <input type="text" id="photo" name="photo<%= 1-index %>" placeholder="Add an image url for your photo..." class="form-control" value="<%= photo.image_url %>">
+          <input type="text" id="photo" name="photo<%= 1+index %>" placeholder="Add an image url for your photo..." class="form-control" value="<%= photo.image_url %>">
+        <% end %>
+        <% ((@listing.photos.count+1)..3).each do |index| %>
+          <label for="photo" class="control-label">
+            Photo
+          </label>
+
+          <input type="text" id="photo" name="photo<%= index %>" placeholder="Add an image url for your photo..." class="form-control">
         <% end %>
         </div>
 
